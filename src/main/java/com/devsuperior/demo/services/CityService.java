@@ -22,6 +22,11 @@ public class CityService {
         return list.stream().map(CityDTO::new).toList();
     }
 
-
+    @Transactional
+    public CityDTO insert(CityDTO dto) {
+        City entity = new City(null, dto.getName());
+        entity = repository.save(entity);
+        return new CityDTO(entity);
+    }
 
 }
